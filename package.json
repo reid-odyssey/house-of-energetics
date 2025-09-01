@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.6.5",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-slot": "^1.0.2",
     "autoprefixer": "^10.0.1",

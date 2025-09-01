@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: process.env.BASE_URL || '',
+  assetPrefix: process.env.ASSETS_PREFIX || '',
   images: {
     domains: ['localhost'],
     unoptimized: true
@@ -7,7 +9,6 @@ const nextConfig = {
   trailingSlash: true,
   output: 'export',
   distDir: 'out',
-  // assetPrefix: process.env.NODE_ENV === 'production' ? '/house-of-energetics' : '',
 }
 
 module.exports = nextConfig
