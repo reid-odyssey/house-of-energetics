@@ -1,15 +1,5 @@
-import type { OpenNextConfig } from "@opennextjs/cloudflare";
+import type { NextConfig } from "next";
 
-const config: OpenNextConfig = {
-  default: {
-    override: {
-      wrapper: "cloudflare-node",
-      converter: "edge",
-      incrementalCache: "cloudflare-kv",
-      tagCache: "cloudflare-kv",
-      queue: "cloudflare-queue"
-    }
-  }
-};
+import { defineCloudflareConfig } from "@opennextjs/cloudflare";
 
-export default config;
+export default defineCloudflareConfig({});
