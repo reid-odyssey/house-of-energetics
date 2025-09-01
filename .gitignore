@@ -40,4 +40,3 @@ next-env.d.ts
 
 # Wrangler state
 /.wrangler/
-wrangler.jsonc
