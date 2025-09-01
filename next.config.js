@@ -6,9 +6,10 @@ const nextConfig = {
     domains: ['localhost'],
     unoptimized: true
   },
-  trailingSlash: true,
-  output: 'export',
-  distDir: 'out',
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
+
+// added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
+const { initOpenNextCloudflareForDev } = require("@opennextjs/cloudflare");
+initOpenNextCloudflareForDev();
