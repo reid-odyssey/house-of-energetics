@@ -7,7 +7,7 @@ const nextConfig = {
   trailingSlash: true,
   output: 'export',
   distDir: 'out',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/house-of-energetics' : '',
+  // assetPrefix: process.env.NODE_ENV === 'production' ? '/house-of-energetics' : '',
 }
 
 module.exports = nextConfig
