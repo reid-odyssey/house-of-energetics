@@ -4,6 +4,8 @@ const nextConfig = {
   assetPrefix: process.env.COSMIC_MOUNT_PATH || '',
   output: 'standalone',
   outputFileTracingRoot: process.cwd(),
+  trailingSlash: false,
+  skipTrailingSlashRedirect: true,
 }
 
 module.exports = nextConfig
