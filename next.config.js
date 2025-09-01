@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove basePath and assetPrefix temporarily to test basic functionality
-  // basePath: process.env.COSMIC_MOUNT_PATH || '',
-  // assetPrefix: process.env.COSMIC_MOUNT_PATH || '',
+  basePath: '/home',
+  assetPrefix: '/home',
   output: 'standalone',
   outputFileTracingRoot: process.cwd(),
   trailingSlash: false,
