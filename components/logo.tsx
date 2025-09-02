@@ -18,20 +18,22 @@ export function Logo({ className = "", variant = "default" }: { className?: stri
         className="h-16"
       >
         <Image
-          src="/images/house-of-energetics-logo-black (1).png"
+          src="/home/images/house-of-energetics-logo-black (1).png"
           alt="House of Energetics"
           width={390}
           height={62}
           className="h-16 w-auto dark:hidden"
           priority
+          unoptimized
         />
         <Image
-          src="/images/house-of-energetics-logo-white.png"
+          src="/home/images/house-of-energetics-logo-white.png"
           alt="House of Energetics"
           width={390}
           height={62}
           className="h-16 w-auto hidden dark:block"
           priority
+          unoptimized
         />
       </motion.div>
     </motion.div>

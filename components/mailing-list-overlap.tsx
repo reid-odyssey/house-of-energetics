@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useRef, useState } from "react"
 
@@ -10,16 +10,25 @@ export function MailingListOverlap() {
   const [email, setEmail] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  })
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"])
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 1.1])
 
   return (
-    <section className="relative -mt-10 z-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative -mt-32 z-20 bg-gradient-to-br from-gray-900 via-[#7D5A3B] to-[#DC542A] py-20">
+      <div className="max-w-5xl mx-auto px-8 sm:px-12 lg:px-16">
         <motion.div
           ref={ref}
+          style={{ y, scale }}
           initial={{ y: 100, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.8 }}
-          className="bg-gradient-to-r from-mocha to-golden-amber rounded-lg shadow-2xl p-4 lg:p-6"
+          className="bg-gradient-to-r from-mocha to-golden-amber rounded-2xl shadow-2xl p-8 lg:p-12 backdrop-blur-sm"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             {/* Left Content */}

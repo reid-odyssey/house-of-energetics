@@ -147,10 +147,11 @@ export function TinctureCarousel() {
                   {/* Background botanical image */}
                   <div className="absolute inset-0 opacity-30">
                     <Image
-                      src="/images/136A2808.jpg"
+                      src="/home/images/136A2808.jpg"
                       alt="Botanical herbs"
                       fill
                       className="object-cover"
+                      unoptimized
                     />
                   </div>
                   

@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { ProductCarousel } from "@/components/product-carousel"
 
 const products = [
   {
@@ -12,7 +13,7 @@ const products = [
     subtitle: "Intuitive Decision Making",
     description: "Premium botanical blend designed to enhance clarity and align with your authentic purpose. Meticulously crafted for the modern executive seeking authentic transformation through ancient wisdom.",
     benefits: ["Enhanced Intuition", "Clear Decision Making", "Purpose Alignment"],
-    color: "from-mocha to-amber",
+    color: "from-gray-800 via-[#7D5A3B] to-[#D4A843]",
     layout: "left"
   },
   {
@@ -21,7 +22,7 @@ const products = [
     subtitle: "Mental Clarity & Resilience", 
     description: "Adaptogenic formula supporting mental clarity and emotional resilience during high-pressure moments. Designed for conscious leaders navigating complex business landscapes.",
     benefits: ["Mental Clarity", "Stress Resilience", "Peak Performance"],
-    color: "from-amber to-lime",
+    color: "from-gray-800 via-gray-600 to-[#7D5A3B]",
     layout: "right"
   },
   {
@@ -30,7 +31,7 @@ const products = [
     subtitle: "Mind-Body Harmony",
     description: "Holistic wellness formula harmonizing mind, body, and spirit for conscious leaders. Bridging ancient wisdom with modern neuroscience for breakthrough results.",
     benefits: ["Energy Balance", "Holistic Wellness", "Mind-Body Connection"],
-    color: "from-lime to-mocha",
+    color: "from-gray-800 via-gray-700 to-[#D4A843]",
     layout: "left"
   },
   {
@@ -39,7 +40,7 @@ const products = [
     subtitle: "Breakthrough Catalyst",
     description: "Advanced energetics blend combining ancient wisdom with modern business acumen. The ultimate catalyst for executives ready to transform their leadership approach.",
     benefits: ["Breakthrough Results", "Transformation", "Ancient Wisdom"],
-    color: "from-mocha-600 to-amber-600",
+    color: "from-gray-900 via-gray-700 to-[#DC542A]",
     layout: "right"
   }
 ]
@@ -47,8 +48,13 @@ const products = [
 export function ProductHeroSections() {
   return (
     <div className="space-y-0">
-      {products.map((product, index) => (
+      {products.slice(0, 2).map((product, index) => (
         <ProductHeroSection key={product.id} product={product} index={index} />
+      ))}
+      {/* Product Carousel after Executive Focus */}
+      <ProductCarousel />
+      {products.slice(2).map((product, index) => (
+        <ProductHeroSection key={product.id} product={product} index={index + 2} />
       ))}
     </div>
   )
@@ -61,12 +67,10 @@ function ProductHeroSection({ product, index }: { product: typeof products[0], i
   return (
     <section 
       ref={ref} 
-      className={`min-h-[50vh] flex items-center py-10 ${
-        index % 2 === 0 ? 'bg-gradient-to-br from-mocha-50 to-golden-amber-50' : 'bg-gradient-to-br from-golden-amber-50 to-bright-lime-50'
-      }`}
+      className={`min-h-[80vh] flex items-center py-20 bg-gradient-to-br ${product.color}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${
+      <div className="max-w-full mx-auto px-8 sm:px-12 lg:px-16 xl:px-20 w-full">
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center ${
           product.layout === 'right' ? 'lg:grid-flow-col-dense' : ''
         }`}>
           
@@ -82,7 +86,7 @@ function ProductHeroSection({ product, index }: { product: typeof products[0], i
                 initial={{ y: 50, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-4xl lg:text-6xl font-display font-medium text-mocha mb-4"
+                className="text-4xl lg:text-6xl font-display font-medium text-white mb-4"
               >
                 {product.name}
               </motion.h2>
@@ -91,7 +95,7 @@ function ProductHeroSection({ product, index }: { product: typeof products[0], i
                 initial={{ y: 30, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl text-golden-amber-600 font-medium mb-6"
+                className="text-xl text-amber-300 font-medium mb-6"
               >
                 {product.subtitle}
               </motion.p>
@@ -100,7 +104,7 @@ function ProductHeroSection({ product, index }: { product: typeof products[0], i
                 initial={{ y: 30, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="text-lg text-gray-600 leading-relaxed mb-8 font-sans"
+                className="text-lg text-white/80 leading-relaxed mb-8 font-sans"
               >
                 {product.description}
               </motion.p>
@@ -113,7 +117,7 @@ function ProductHeroSection({ product, index }: { product: typeof products[0], i
               transition={{ duration: 0.8, delay: 0.6 }}
               className="space-y-4"
             >
-              <h4 className="text-sm font-medium text-gray-900 uppercase tracking-wide">
+              <h4 className="text-sm font-medium text-white uppercase tracking-wide">
                 Key Benefits
               </h4>
               <div className="flex flex-wrap gap-3">
@@ -138,7 +142,7 @@ function ProductHeroSection({ product, index }: { product: typeof products[0], i
             >
               <Button 
                 size="lg"
-                className="bg-energetic-red hover:bg-energetic-red-600 text-white px-large py-base rounded-md font-medium text-lg"
+                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/30 px-8 py-4 text-lg font-medium rounded-xl transition-all duration-300"
               >
                 Explore {product.name}
               </Button>
@@ -152,14 +156,15 @@ function ProductHeroSection({ product, index }: { product: typeof products[0], i
             transition={{ duration: 0.8, delay: 0.4 }}
             className={`relative ${product.layout === 'right' ? 'lg:col-start-1' : ''}`}
           >
-            <div className={`aspect-square rounded-2xl bg-gradient-to-br ${product.color} p-8 shadow-2xl relative overflow-hidden`}>
+            <div className="aspect-square rounded-2xl bg-white/10 backdrop-blur-sm p-8 shadow-2xl relative overflow-hidden w-3/4 h-3/4 mx-auto">
               {/* Background Image */}
               <div className="absolute inset-0 opacity-40">
                 <Image
-                  src={index % 2 === 0 ? "/images/136A2676.jpg" : "/images/136A2808.jpg"}
+                  src="/home/images/image-from-rawpixel-id-16410290-png.png"
                   alt={`${product.name} botanical background`}
                   fill
                   className="object-cover"
+                  unoptimized
                 />
               </div>
               
